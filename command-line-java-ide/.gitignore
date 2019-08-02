@@ -1,0 +1,15 @@
+.*.swp
+/*.iml
+/*.ipr
+/*.iws
+/.gradle/
+/.idea/
+/.syntastic_javac_config
+/GPATH
+/GRTAGS
+/GTAGS
+/build/
+/compile.log
+/link/
+/lombok.config
+/script/jshell.sh

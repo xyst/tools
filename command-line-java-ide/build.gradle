@@ -1,0 +1,63 @@
+plugins {
+  id 'application'
+  id 'com.diffplug.gradle.spotless' version '3.24.0'
+  id 'com.github.spotbugs' version '2.0.0'
+  id 'com.gorylenko.gradle-git-properties' version '2.0.0'
+  id 'com.scuilion.syntastic' version '0.3.8'
+  id 'idea'
+  id 'io.freefair.lombok' version '3.8.1'
+  id 'java'
+  id 'net.ltgt.errorprone' version '0.8.1'
+}
+
+lombok {
+  version = '1.18.8'
+}
+
+// Use './gradlew idea' to download javadoc files of dependencies.
+idea {
+  module {
+    downloadJavadoc = true
+  }
+}
+
+mainClassName = 'Main'
+
+repositories {
+  jcenter()
+}
+
+dependencies {
+
+  errorprone 'com.google.errorprone:error_prone_core:2.3.3'
+
+  testImplementation 'org.junit.jupiter:junit-jupiter:5.5.1'
+}
+
+test {
+  useJUnitPlatform()
+}
+
+tasks.withType(com.github.spotbugs.SpotBugsTask) {
+  reports {
+    xml.enabled = false
+    html.enabled = true
+  }
+}
+
+spotless {
+  java {
+    googleJavaFormat()
+  }
+}
+
+gitProperties{
+  keys = ['git.commit.id', 'git.dirty']
+}
+
+// Note: Contains 'build/resources/main' even if it does not exist.
+task classPath {
+  doLast {
+    print sourceSets.main.runtimeClasspath.asPath
+  }
+}
