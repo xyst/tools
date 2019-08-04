@@ -1,12 +1,12 @@
 # Command line Java IDE
 
-# How to use
+## How to use
 
 ~~~
 script/flow.sh
 ~~~
 
-# What it does
+## What it does
 
 It displays one line:
 
@@ -16,42 +16,37 @@ gradle: [c]ompileTestJava, [r]un, spotless[A]pply, [b]uild. [R]eports. [v]im. [V
 
 Just press a key to run a task.
 
-# Why?
+## Why?
 
-## The good
+It is fast, needs little memory, and works in a terminal.
 
-- It is fast
-- It needs little memory
-- It works in a terminal
-- It does 90% of what a desktop IDE does
-- It is easy to modify
+It does 90% of what a desktop IDE does (for me), and is easy to modify.
 
-## The bad
+Drawback: a desktop IDE has more precise code index.
 
-- The code index is less precise than an desktop IDE's
+## Typical workflow
 
-# Typical workflow
-
-1. Press "c" to compile and test
-2. Any errors will be shown in Vim, press "gf" to jump to the file
+1. Press `c` to compile
+2. Any errors will be shown in Vim, press `gf` to jump to the file
 3. Fix the code
-4. Press "c" to compile and test again
-5. Press "A" to format all the code
-6. Press "b" to build
-7. Press "R" to check the static analysis and test results
-8. Finally, use the package in "build/distributions/" for a release
+4. Press `c` to compile again
+5. Press `A` to format the code
+6. Press `b` to build
+7. Press `R` for the results of static analysis and tests
+8. Press `t` to stage/commit in Git
+8. Finally, use the package in `build/distributions/` for a release
 
-# Tools in use
+## Tools in use
 
 - OpenJDK 11
-- Gradle
-- Vim
-- GNU Global
-- Git
-- Ranger
-- w3m
+- Gradle - build system
+- Vim - editor
+- GNU Global - code index
+- Spotless - code format
+- Git and Tig - version control
+- Ranger - directory browser
 
-# Hidden features
+## Hidden features
 
 To create a standalone JVM:
 
@@ -65,3 +60,42 @@ To extract sources & javadoc of a library, for example, Guava:
 script/extract-sources-and-javadoc.sh com.google.guava:guava:27.0.1-jre
 ~~~
 
+## Useful keys
+
+### Vim with GNU Global
+
+- `gf` to open file name
+- `Ctrl-w gf` to open file name in new tab
+- `Ctrl-]` to open definition
+- `Ctrl-w Ctrl-]` to open definition in new tab
+- `:cs find g name` to find a class/method by name
+
+### Tig
+
+- `u` to stage
+- `c` to commit
+- `!` to discard a change
+- `m` to show history
+- `s` to show status
+- `j` and `k` to walk in the diff
+- `q` to quit
+
+### Ranger
+
+- `:touch name` to create a file
+- `a` to rename a file
+- `:mkdir name` to create a directory
+- `Space` to select files
+- `dd` and `pp` to move files
+- `q` to quit
+
+## Relevant
+
+Unix as IDE  
+<https://sanctum.geek.nz/arabesque/series/unix-as-ide/>
+
+Learn Vim Progressively  
+<https://yannesposito.com/Scratch/en/blog/Learn-Vim-Progressively/>
+
+GNU Global  
+<https://www.gnu.org/software/global/globaldoc_toc.html#Vim-editor>
